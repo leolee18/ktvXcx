@@ -27,7 +27,7 @@ function loginCode(sucFun) {
   wx.login({
     success: function (res) {
       if (res.code) {
-        let mSendObj = { code: res.code};
+        let mSendObj = { code: res.code, type:7};
         mUserCode(mSendObj, sucFun);
       } else {
         console.log('获取用户登录态失败！' + res.errMsg)
@@ -36,44 +36,69 @@ function loginCode(sucFun) {
   });
 }
 function mUserCode(mSend, sucFun) {
-  mServer.serverReq('wx/login', mSend, function (data) {
+  mServer.serverReq('social/login', mSend, function (data) {
     //console.log('login:'+JSON.stringify(data));
     if (data.result === 'success') {
-      mToken = data.items.token;
-      userId = data.items.userId;
+      let mObj = data.items.info;
+      mToken = mObj.playerId;
+      if (mUser){
+        mUser.nickName = mObj.nickName;
+        mUser.headImgPath = mObj.headImgPath;
+        mUser.appType = mObj.appType;
+        mUser.deviceId = mObj.deviceId;
+      }else{
+        mUser = {
+          nickName: mObj.nickName,
+          headImgPath: mObj.headImgPath,
+          appType: mObj.appType,
+          deviceId: mObj.deviceId
+        }
+      }
+      
       try {
         wx.setStorageSync('userToken', mToken);
       } catch (e) { }
-      try {
-        wx.setStorageSync('userId', userId);
-      } catch (e) { }
       
-      mUserToken(mToken, function (mToken){
-        if (typeof sucFun == 'function') sucFun(mToken);
-      });
+      if (typeof sucFun == 'function') sucFun(mToken);
+      pageRedirect(mObj.nickName == '');
     }
   });
 }
 function mUserToken(mToken, sucFun) {
-  mServer.serverReq('user/get', { token: mToken }, function (data) {
+  mServer.serverReq('player/getPlayer', { playerId: mToken }, function (data) {
     //console.log('getUser:' +JSON.stringify(data));
     if (data.result === 'success') {
-      mUser = data.items;
-      if (typeof sucFun == 'function') sucFun(mToken);
-      if (data.items.authedFlag != '1'){
-        if (getCurrentPages().length >= 1) {
-          let mCur = getCurrentPages()[(getCurrentPages().length - 1)];
-          if (mCur.route !== 'pages/login/login' && pageLogin) {
-            pageLogin = false;
-            wx.reLaunch({ url: '/pages/login/login' });
-          }
+      let mObj = data.items.info;
+      mToken = mObj.playerId;
+      if (mUser) {
+        mUser.nickName = mObj.nickName;
+        mUser.headImgPath = mObj.headImgPath;
+        mUser.appType = mObj.appType;
+        mUser.deviceId = mObj.deviceId;
+      } else {
+        mUser = {
+          nickName: mObj.nickName,
+          headImgPath: mObj.headImgPath,
+          appType: mObj.appType,
+          deviceId: mObj.deviceId
         }
       }
+      if (typeof sucFun == 'function') sucFun(mToken);
+      pageRedirect(mObj.nickName == '');
     } else {
       console.log('重新授权');
       loginCode(sucFun);
     }
   });
+}
+function pageRedirect(mBool){
+  if (mBool && getCurrentPages().length >= 1) {
+    let mCur = getCurrentPages()[(getCurrentPages().length - 1)];
+    if (mCur.route !== 'pages/login/login' && pageLogin) {
+      pageLogin = false;
+      wx.navigateTo({ url: '/pages/login/login' });//wx.navigateTo//wx.reLaunch
+    }
+  }
 }
 
 //用户主动触发登录
@@ -84,20 +109,18 @@ function bGUinfo(detail, sucFun) {
   let mInfo = detail.userInfo;
   mUser = {
     nickName: mInfo.nickName,
-    gender: mInfo.gender,
-    city: mInfo.city,
-    avatarUrl: mInfo.avatarUrl
+    headImgPath: mInfo.avatarUrl
   }
 
   let mSendObj = {};
-  if (detail.encryptedData) mSendObj.encryptedData = detail.encryptedData;
-  if (detail.iv) mSendObj.iv = detail.iv;
+  mSendObj.type = 7;
+  if (detail.encryptedData) mSendObj.encrpytdata = detail.encryptedData;
+  if (detail.iv) mSendObj.encrpytiv = detail.iv;
   wx.login({
     success: function (res) {
       if (res.code) {
         mSendObj.code = res.code;
-        console.log(JSON.stringify(mSendObj))
-        //mUserCode(mSendObj, sucFun);
+        mUserCode(mSendObj, sucFun);
       } else {
         console.log('获取用户登录态失败！' + res.errMsg)
       }
@@ -113,15 +136,14 @@ function setToken(mTo) {
   mToken = mTo;
 }
 function getUser() {
-  let myUser = { aut:false, nickName: '匿名', avatarUrl: '../../imgs/mrtx.png', city: '未知', gender: '0' };
+  let myUser = {nickName: '匿名', headImgPath: '' };
   if (mUser){
     myUser = JSON.parse(JSON.stringify(mUser));
-    myUser.aut = true;
     if (!myUser.nickName || myUser.nickName == '') {
       myUser.nickName = '匿名';
     }
-    if (!myUser.avatarUrl || myUser.avatarUrl == '') {
-      myUser.avatarUrl = '../../imgs/mrtx.png';
+    if (!myUser.headImgPath || myUser.headImgPath == '') {
+      myUser.headImgPath = '';
     }
   }
   return myUser;

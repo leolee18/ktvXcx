@@ -31,16 +31,18 @@ function getNetType(){
   });
 }
 function serAdd(addres){
-  var serInter = 'https://app.psyrogers.vip/';
+  var serInter = 'http://10.0.0.198:42090/';
 	
-  var kc = 'biz/wxapp/';
+  var kc = 'v1/';
 	var returnStr = serInter;
 	switch (addres){
-    case 'wx/login':
+    case 'social/login':
+    case 'player/getPlayer':
+    case 'binding':
 			returnStr = serInter+kc+addres;
 			break;		
 		case 'local':
-      returnStr = 'http://app.psyrogers.org/';
+      returnStr = 'http://10.0.0.198:42090/v1/';
 			break;	
 		default:
 			returnStr = serInter;
