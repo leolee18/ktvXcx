@@ -1,0 +1,4 @@
+<import src="../../temp/songs.wxml"/>
+<view bindtap='songTap' class="son-all">
+  <template is="scone" wx:for='{{mList}}' wx:key='songListid' wx:for-index="idx" data="{{item,idx}}" />
+</view>

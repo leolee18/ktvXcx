@@ -39,6 +39,9 @@ function serAdd(addres){
     case 'social/login':
     case 'player/getPlayer':
     case 'binding':
+    case 'songs/getSingerCategories':
+    case 'songs/getSongsBySinger':
+    case 'songs/getSingersByCategoryAndAlphabet':
 			returnStr = serInter+kc+addres;
 			break;		
 		case 'local':

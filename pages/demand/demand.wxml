@@ -1,0 +1,6 @@
+<import src="../../temp/songs.wxml"/>
+<view bindtap='demTap' class='dem-all'>
+  <view wx:for='{{mList}}' wx:key='demListPid'  wx:for-item="itemP" class='dem-cla'>
+    <template is="sone" wx:for='{{itemP}}' wx:key='demListCid' data="{{item}}"/>
+  </view>
+</view>

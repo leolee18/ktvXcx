@@ -1,0 +1,14 @@
+page{
+  background-color: #fff;
+}
+.son-all{
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+
+
+
+@import "../../temp/songs.wxss";

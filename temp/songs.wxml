@@ -1,0 +1,11 @@
+<template name="sone">
+  <view id='demone' data-muid='{{item.uid}}' data-mname='{{item.name}}' class='son-list-one'>{{item.name}}<view class='son-list-k'></view></view>
+</template>
+
+<template name="scone">
+  <view id='songone' data-mid='{{idx}}' class='sonc-list-one'>
+    <text class='sonc-list-so-name e-none'>{{item.songName}}</text>
+    <text class='sonc-list-si-name e-none'>{{item.singerName}}</text>
+    <view class='sonc-list-but e-none'>点歌</view>
+  </view>
+</template>

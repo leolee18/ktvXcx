@@ -1,0 +1,30 @@
+<import src="../../temp/singers.wxml"/>
+<view bindtap='singTap' class='sin-all'>
+  <template is="sincl" data="{{sinZm}}" />
+  <template is="sins" wx:for='{{mList}}' wx:key='singListid' data="{{item}}" />
+</view>
+<view bindtap='zmTap' class='sin-zm'>
+  <view id='A' class='sin-zm-one'>A</view>
+  <view id='B' class='sin-zm-one'>B</view>
+  <view id='C' class='sin-zm-one'>C</view>
+  <view id='D' class='sin-zm-one'>D</view>
+  <view id='E' class='sin-zm-one'>E</view>
+  <view id='F' class='sin-zm-one'>F</view>
+  <view id='G' class='sin-zm-one'>G</view>
+  <view id='H' class='sin-zm-one'>H</view>
+  <view id='J' class='sin-zm-one'>J</view>
+  <view id='K' class='sin-zm-one'>K</view>
+  <view id='L' class='sin-zm-one'>L</view>
+  <view id='M' class='sin-zm-one'>M</view>
+  <view id='N' class='sin-zm-one'>N</view>
+  <view id='O' class='sin-zm-one'>O</view>
+  <view id='P' class='sin-zm-one'>P</view>
+  <view id='Q' class='sin-zm-one'>Q</view>
+  <view id='R' class='sin-zm-one'>R</view>
+  <view id='S' class='sin-zm-one'>S</view>
+  <view id='T' class='sin-zm-one'>T</view>
+  <view id='W' class='sin-zm-one'>W</view>
+  <view id='X' class='sin-zm-one'>X</view>
+  <view id='Y' class='sin-zm-one'>Y</view>
+  <view id='Z' class='sin-zm-one'>Z</view>
+</view>

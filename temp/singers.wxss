@@ -1,0 +1,21 @@
+.sin-list-cla{
+  position: relative;
+  width: 100%;
+  height: 64rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 35rpx;
+  line-height: 64rpx;
+}
+.sin-list-one{
+  position: relative;
+  width: 100%;
+  height: 86rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  line-height: 64rpx;
+  color: #161616;
+  border-bottom: 1rpx solid #eff0eb;
+  background-color: #fff;
+}

@@ -1,0 +1,34 @@
+page{
+  background-color: #e4e7ee;
+}
+.sin-all{
+  position: relative;
+  height: 100%;
+  display: flex;
+  z-index: 0;
+  flex-direction: column;
+}
+.sin-zm{
+  position: fixed;
+  width: 80rpx;
+  height: 100%;
+  top:0;
+  right: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sin-zm-one{
+  position: relative;
+  width: 80rpx;
+  height: 40rpx;
+  margin: 3rpx auto;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #434343;
+}
+
+@import "../../temp/singers.wxss";

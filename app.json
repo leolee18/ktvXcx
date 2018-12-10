@@ -1,11 +1,14 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/demand/demand",
+    "pages/demand/song",
+    "pages/demand/singer",
     "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#f9f9f9",
     "navigationBarTitleText": "demo",
     "navigationBarTextStyle":"black"
   }

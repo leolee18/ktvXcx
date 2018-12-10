@@ -1,0 +1,6 @@
+<template name="sins">
+  <view id='sinone' data-muid='{{item.uid}}' data-mname='{{item.name}}' class='sin-list-one'>{{item.name}}</view>
+</template>
+<template name="sincl">
+  <view class='sin-list-cla'>{{sinZm}}</view>
+</template>
