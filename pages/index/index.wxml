@@ -1,1 +1,5 @@
 <view>demo index page</view>
+
+<view class='allView'>
+<image src='../../imgs/all.png' class='allImg sucPlay'></image>
+</view>

@@ -1,1 +1,23 @@
 /* pages/index/index.wxss */
+
+.allView{
+  position: relative;
+  width: 85rpx;
+  height: 37rpx;
+  overflow: hidden;
+}
+.allImg{
+  position: absolute;
+  width: 340rpx;
+  height: 37rpx;
+}
+
+.sucPlay{display:block;animation:cglist 2s steps(4) infinite;-webkit-animation:cglist 2s steps(4) infinite}
+@keyframes cglist {
+  0% {
+	  transform: translate3d(0rpx, 0, 0);
+	}
+	100% {
+	  transform: translate3d(-340rpx, 0, 0);
+	}
+}

@@ -15,7 +15,9 @@ function mInit() {
   }
 }
 function sinsLoad(mcaId, mcazm, sucFun) {
+  wx.showToast({ title: '数据加载中', mask: true, icon: 'loading', duration: 10000 });
   mServer.serverReq('songs/getSingersByCategoryAndAlphabet', { categoryId: mcaId, alphabet: mcazm, start: jiaZai.jNum, count: 30 }, function (data) {
+    wx.hideToast();
     //console.log('listgetSingersByCategoryTea:' + JSON.stringify(data));
     if (data.result === 'success') {
       if (data.items) {

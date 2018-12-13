@@ -15,7 +15,9 @@ function mInit() {
   }
 }
 function sonLoad(msinId, sucFun) {
+  wx.showToast({ title: '数据加载中', mask: true, icon: 'loading', duration: 10000 });
   mServer.serverReq('songs/getSongsBySinger', { singerId: msinId, start: jiaZai.jNum, count: 30 }, function (data) {
+    wx.hideToast();
     //console.log('getSongsBySinger:' + JSON.stringify(data));
     if (data.result === 'success') {
       if (data.items) {
